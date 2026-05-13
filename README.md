@@ -114,16 +114,6 @@ Thumbs.db
 
 When you paste code into an AI tool, that text is sent to a server. Understanding what happens to your data is essential.
 
-### What Happens to Your Data
-
-| Tool | Data used for training? | Who can see it? |
-|------|------------------------|-----------------|
-| ChatGPT (free) | Yes, by default | OpenAI staff (for safety reviews) |
-| ChatGPT (paid/API) | No (can opt out) | OpenAI staff (limited) |
-| Claude (free/paid) | No, by default | Anthropic staff (for safety) |
-| GitHub Copilot | Depends on plan | Microsoft / GitHub |
-| Local models (Ollama) | Never leaves your PC | Only you |
-
 ### What You Should NEVER Paste into an LLM
 
 - **API keys, tokens, or passwords** — even if you ask the AI to "hide" them
