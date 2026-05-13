@@ -11,7 +11,8 @@ A practical guide for students on using AI coding tools (ChatGPT, Claude, GitHub
 - [3. What You Share with LLMs](#3-what-you-share-with-llms)
 - [4. Personal Safety and Privacy](#4-personal-safety-and-privacy)
 - [5. Using LLMs Effectively](#5-using-llms-effectively)
-- [6. Quick Reference Checklist](#6-quick-reference-checklist)
+- [6. Academic Integrity](#6-academic-integrity)
+- [7. Quick Reference Checklist](#7-quick-reference-checklist)
 
 ---
 
@@ -52,6 +53,8 @@ Then restart your terminal or run: `source ~/.zshrc`
 set OPENAI_API_KEY=sk-abc123secretkey456
 ```
 
+> **Note:** `set` is temporary — it only lasts for that terminal session. For a permanent variable, use `setx OPENAI_API_KEY "sk-abc123secretkey456"` instead.
+
 **Windows (PowerShell):**
 
 ```powershell
@@ -68,6 +71,15 @@ DATABASE_URL=postgres://user:pass@localhost/mydb
 ```
 
 The critical rule: **never upload your .env file to GitHub.** The next section explains how to prevent that.
+
+### Cost and Rate Limiting Awareness
+
+If you are using a paid API (OpenAI, Google Cloud, etc.):
+
+- **Set usage limits** on your API account dashboard to avoid surprise bills
+- **Start with free tiers** — most services offer them for students
+- **Be careful with loops** — one bad `while` loop can make hundreds of API calls in seconds and drain your credits
+- **Monitor your usage** regularly on the provider's dashboard
 
 ---
 
@@ -107,6 +119,16 @@ Thumbs.db
 ```
 
 > **Warning:** If you already committed a secret before adding .gitignore, the file is still in your Git history. Adding .gitignore later does NOT remove it. You must **change or revoke the key immediately**.
+
+### What to Do If You Accidentally Leak a Key
+
+1. **Revoke the key immediately** — go to the service's dashboard (OpenAI, Google Cloud, AWS, etc.) and delete or regenerate the key
+2. **Check your usage and billing** — look for any unauthorized activity that happened while the key was exposed
+3. **Generate a new key** and update your environment variables
+4. **Remove the secret from Git history** — simply deleting the file in a new commit is not enough, the old commit still contains it. Use [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/) or `git filter-repo` to scrub it from history
+5. **Force push** the cleaned history: `git push --force`
+
+> The most important step is **revoking the key**. Even if you clean your Git history, someone may have already copied it.
 
 ---
 
@@ -232,7 +254,29 @@ You will rarely get perfect code on the first try. Treat it as a conversation:
 
 ---
 
-## 6. Quick Reference Checklist
+## 6. Academic Integrity
+
+Using LLMs as a student comes with ethical responsibilities. AI can help you learn, but it should never replace your own thinking.
+
+### Rules to Follow
+
+- **Check your university's AI policy** before using LLMs for any assignment — policies vary by course and instructor
+- **Always disclose AI usage** when required — if your instructor asks whether you used AI, be honest
+- **Submitting AI-generated code as your own work is plagiarism** unless your instructor explicitly allows it
+- **Using AI to learn is not the same as using AI to cheat** — asking an LLM to explain a concept is learning; asking it to solve your homework is not
+- **You are responsible for the code you submit** — if AI-generated code has bugs or errors, you will be the one who is graded on it
+
+### The Learning Test
+
+Before submitting any AI-assisted work, ask yourself:
+
+> *"If my instructor asked me to explain every line of this code on the spot, could I do it?"*
+
+If the answer is no, you do not understand the code well enough to submit it.
+
+---
+
+## 7. Quick Reference Checklist
 
 ### Before Writing Code
 
@@ -245,6 +289,8 @@ You will rarely get perfect code on the first try. Treat it as a conversation:
 - [ ] I have removed all real API keys, passwords, and personal data from my prompt
 - [ ] I am using placeholder values instead of real credentials
 - [ ] I understand the privacy policy of the AI tool I am using
+- [ ] I am not pasting exam questions or graded assignment prompts into an LLM
+- [ ] I have checked my course's AI usage policy
 
 ### Before Running AI-Generated Code
 
