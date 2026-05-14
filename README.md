@@ -125,10 +125,12 @@ Thumbs.db
 1. **Revoke the key immediately** — go to the service's dashboard (OpenAI, Google Cloud, AWS, etc.) and delete or regenerate the key
 2. **Check your usage and billing** — look for any unauthorized activity that happened while the key was exposed
 3. **Generate a new key** and update your environment variables
-4. **Remove the secret from Git history** — simply deleting the file in a new commit is not enough, the old commit still contains it. Use [BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/) or `git filter-repo` to scrub it from history
-5. **Force push** the cleaned history: `git push --force`
 
-> The most important step is **revoking the key**. Even if you clean your Git history, someone may have already copied it.
+> The most important step is **revoking the key**. Even if you delete the file in a new commit, the old commit still contains it. Someone may have already copied it — so always revoke first.
+
+### GitHub Secret Scanning
+
+GitHub automatically scans public repositories for known API key patterns (OpenAI, AWS, Google Cloud, etc.). If it detects a leaked key, it will send you an email alert and may notify the service provider to revoke it automatically. However, do not rely on this — it only catches known patterns and may not detect every key format. Always follow the steps above yourself.
 
 ---
 
